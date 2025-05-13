@@ -6,7 +6,11 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "fastapi[standard]>=0.115.12",
+    "psycopg2>=2.9.10",
+    "psycopg2-binary>=2.9.10",
+    "python-decouple>=3.8",
     "requests>=2.32.3",
+    "sqlalchemy>=2.0.40",
     "streamlit>=1.45.0",
     "uvicorn>=0.34.2",
 ]
