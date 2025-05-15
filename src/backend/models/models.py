@@ -2,6 +2,9 @@ from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship
 from infra.database.database import Base
 
+# Esse arquivo contém os modelos de dados para o SQLAlchemy.
+# Os modelos são usados para mapear as tabelas do banco de dados e definir os relacionamentos entre elas.
+
 class Cultura(Base):
     __tablename__ = "cultura"
 

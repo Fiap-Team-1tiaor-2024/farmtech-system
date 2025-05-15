@@ -1,6 +1,8 @@
 from pydantic import BaseModel
 from typing import Optional, List
 
+# Arquivo de DTO para representar os dados que serão enviados e recebidos pela API
+
 # Cultura
 class CulturaBase(BaseModel):
     nome: str

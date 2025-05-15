@@ -4,11 +4,11 @@ from .routers import fase1, fase2, fase3, fase4, estatistica, farmtech
 app = FastAPI()
 
 # Inclui os roteadores
-app.include_router(fase1.router, prefix="/v1/fase1")
-app.include_router(fase2.router, prefix="/v1/fase2")
-app.include_router(fase3.router, prefix="/v1/fase3")
-app.include_router(fase4.router, prefix="/v1/fase4")
-app.include_router(estatistica.router, prefix="/v1/analise/r")
+app.include_router(fase1.router, prefix="/v1/farmtech/fase1")
+app.include_router(fase2.router, prefix="/v1/farmtech/fase2")
+app.include_router(fase3.router, prefix="/v1/farmtech/fase3")
+app.include_router(fase4.router, prefix="/v1/farmtech/fase4")
+app.include_router(estatistica.router, prefix="/v1/farmtech/analise/r")
 app.include_router(farmtech.router, prefix="/v1/farmtech")
 
 
