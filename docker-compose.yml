@@ -12,6 +12,8 @@ services:
       - ./src/infra:/main/infra
     env_file:
       - ./src/infra/.env
+    networks:
+      - farmtech-network
 
   frontend:
     build:
@@ -23,6 +25,9 @@ services:
       - ./src/frontend:/main
     depends_on:
       - backend
+      - estatistica
+    networks:
+      - farmtech-network
 
   estatistica:
     build:
@@ -30,3 +35,9 @@ services:
     container_name: farmtech-estatistica
     volumes:
       - ./src/estatistica:/scripts
+    networks:
+      - farmtech-network
+
+networks:
+  farmtech-network:
+    driver: bridge

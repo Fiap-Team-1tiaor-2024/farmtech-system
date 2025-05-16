@@ -9,7 +9,7 @@ library(dplyr)
 library(gridExtra)
 
 # Caminho relativo para o diretório de dados
-setwd("C:/Dev/Projetos/FIAP/Fase 7/farmtech-system/src/estatistica/r/csv")
+setwd("./r/csv")
 
 # Leitura do arquivo
 data <- read.csv("dados-planilha.csv", fileEncoding = "UTF-8", sep = ";", fill = TRUE)
