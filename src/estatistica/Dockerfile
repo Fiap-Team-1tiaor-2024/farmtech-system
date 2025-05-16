@@ -1,12 +1,27 @@
 FROM r-base:latest
 
-RUN apt-get update && apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
+# Instala dependências do sistema (boas práticas para gráficos e manipulação)
+RUN apt-get update && apt-get install -y \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    libxml2-dev \
+    libfontconfig1-dev \
+    libfreetype6-dev \
+    libharfbuzz-dev \
+    libfribidi-dev \
+    libpng-dev \
+    libtiff5-dev \
+    libjpeg-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN R -e "install.packages(c('dplyr', 'tidyr', 'gridExtra'), repos='https://cloud.r-project.org')"
-RUN R -e "library(dplyr); library(tidyr); library(gridExtra)"
+# Instala os pacotes necessários em uma única linha
+RUN R -e "install.packages(c('dplyr', 'tidyr', 'gridExtra'), repos='https://cloud.r-project.org', lib='/usr/local/lib/R/site-library')"
 
-COPY ./r /estatistica/r
+# Define o diretório de trabalho no container
 WORKDIR /estatistica
+
+# Copia apenas o script necessário
 COPY ./r/estatistica.r .
 
+# Comando de execução padrão
 CMD ["Rscript", "estatistica.r"]

@@ -8,10 +8,11 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./src/backend:/main
-      - ./src/infra:/main/infra
+      - ./src:/app
     env_file:
       - ./src/infra/.env
+    environment:
+      - PYTHONPATH=/app
     networks:
       - farmtech-network
 
@@ -22,10 +23,9 @@ services:
     ports:
       - "8501:8501"
     volumes:
-      - ./src/frontend:/main
+      - ./src/frontend:/app
     depends_on:
       - backend
-      - estatistica
     networks:
       - farmtech-network
 
@@ -34,7 +34,8 @@ services:
       context: ./src/estatistica
     container_name: farmtech-estatistica
     volumes:
-      - ./src/estatistica:/scripts
+      - ./src/estatistica:/estatistica
+    command: ["Rscript", "/estatistica/r/estatistica.r"]
     networks:
       - farmtech-network
 

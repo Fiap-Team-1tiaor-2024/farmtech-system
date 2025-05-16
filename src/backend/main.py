@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from routers import estatistica, farmtech
+import uvicorn
 
 app = FastAPI()
 
