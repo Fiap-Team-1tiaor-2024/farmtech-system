@@ -1,18 +1,22 @@
 from fastapi import APIRouter
+from fastapi.responses import JSONResponse
 from infra.database.database import SessionLocal    
 import subprocess
 
 router = APIRouter()
 
-@router.get("/executar")
+@router.post("/executar")
 def rodar_script_r():
     try:
-        # Executa o script R
         result = subprocess.run(['Rscript', 'src/estatistica/r/estatistica.R'], capture_output=True, text=True)
-        # Verifica se houve erro na execução do script
         if result.returncode != 0:
-            return {"error": "Erro ao executar o script R", "details": result.stderr}
-        # Retorna a saída do script R
-        return {"output": result.stdout}
+            return JSONResponse(
+                status_code=500,
+                content={"error": "Erro ao executar o script R", "details": result.stderr}
+            )
+        return JSONResponse(content={"output": result.stdout})
     except Exception as e:
-        return {"error": str(e)}
+        return JSONResponse(
+            status_code=500,
+            content={"error": str(e)}
+        )
