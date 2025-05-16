@@ -1,7 +1,7 @@
 # Instalação de pacotes
-install.packages("tidyr")
-install.packages("dplyr")
-install.packages("gridExtra")
+install.packages("tidyr", repos = "https://cloud.r-project.org")
+install.packages("dplyr", repos = "https://cloud.r-project.org")
+install.packages("gridExtra", repos = "https://cloud.r-project.org")
 
 # Importação de bibliotecas
 library(tidyr)
