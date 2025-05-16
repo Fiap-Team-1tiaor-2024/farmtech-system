@@ -147,6 +147,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "fastapi", extra = ["standard"] },
+    { name = "pandas" },
     { name = "psycopg2" },
     { name = "psycopg2-binary" },
     { name = "pydantic" },
@@ -161,6 +162,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.115.12" },
+    { name = "pandas", specifier = ">=2.2.3" },
     { name = "psycopg2", specifier = ">=2.9.10" },
     { name = "psycopg2-binary", specifier = ">=2.9.10" },
     { name = "pydantic", specifier = ">=2.11.4" },

@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from infra.database.database import SessionLocal    
 import subprocess
 
 router = APIRouter()
@@ -7,7 +8,7 @@ router = APIRouter()
 def rodar_script_r():
     try:
         # Executa o script R
-        result = subprocess.run(['Rscript', 'src/backend/scripts/r/estatistica.R'], capture_output=True, text=True)
+        result = subprocess.run(['Rscript', 'src/estatistica/r/estatistica.R'], capture_output=True, text=True)
         # Verifica se houve erro na execução do script
         if result.returncode != 0:
             return {"error": "Erro ao executar o script R", "details": result.stderr}

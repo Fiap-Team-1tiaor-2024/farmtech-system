@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./src/backend
+    container_name: farmtech-backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./src/backend:/main
+      - ./src/infra:/main/infra
+    env_file:
+      - ./src/infra/.env
+
+  frontend:
+    build:
+      context: ./src/frontend
+    container_name: farmtech-frontend
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./src/frontend:/main
+    depends_on:
+      - backend
+
+  estatistica:
+    build:
+      context: ./src/estatistica
+    container_name: farmtech-estatistica
+    volumes:
+      - ./src/estatistica:/scripts
