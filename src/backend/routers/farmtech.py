@@ -3,16 +3,9 @@ from sqlalchemy.orm import Session
 from schemas import schemas
 from models import models
 from infra.database.database import SessionLocal
+from infra.database.database import *
 
 router = APIRouter()
-
-# Dependency
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 # CULTURA
 @router.post("/cultura/", response_model=schemas.Cultura)
