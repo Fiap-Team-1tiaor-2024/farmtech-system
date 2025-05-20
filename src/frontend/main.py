@@ -44,7 +44,7 @@ if st.button("Criar Propriedade", key="criar_propriedade_btn"):
     else:
         st.error(f"Erro ao criar propriedade. ❌ {response.text}")
 
-st.markdown("---") # Adicionado para separar
+st.markdown("---")
 st.write("**Listar todas as propriedades**")
 
 if st.button("Listar Propriedades", key="listar_propriedades_btn"):

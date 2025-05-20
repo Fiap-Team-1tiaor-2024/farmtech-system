@@ -25,7 +25,6 @@ def predicao():
     if not all(col in df.columns for col in required_columns):
         return {"error": f"Colunas necessárias não encontradas no CSV. Necessário: {required_columns}"}
     
-    # Remover linhas com NaN nas colunas de features ou target para evitar erros no treinamento
     df.dropna(subset=required_columns, inplace=True)
     
     if df.empty:
@@ -46,7 +45,6 @@ def predicao():
     y_pred_knn = knn_model.predict(X_test)
     mse_knn = mean_squared_error(y_test, y_pred_knn)
 
-    # Treinar o modelo Decision Tree
     dt_model = DecisionTreeRegressor(random_state=42)
     dt_model.fit(X_train, y_train)
     y_pred_dt = dt_model.predict(X_test)

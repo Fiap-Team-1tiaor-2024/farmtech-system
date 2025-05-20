@@ -7,7 +7,6 @@ from infra.database.database import *
 
 router = APIRouter()
 
-# CULTURA
 @router.post("/cultura", response_model=schemas.Cultura, status_code=status.HTTP_201_CREATED)
 def criar_cultura(cultura: schemas.CulturaCreate, db: Session = Depends(get_db)):
     db_cultura = models.Cultura(**cultura.dict())
@@ -20,8 +19,6 @@ def criar_cultura(cultura: schemas.CulturaCreate, db: Session = Depends(get_db))
 def listar_cultura(db: Session = Depends(get_db)):
     return db.query(models.Cultura).all()
 
-
-# Similar para Propriedade, Producao e Insumo...
 @router.post("/propriedade", response_model=schemas.Propriedade, status_code=status.HTTP_201_CREATED)
 def criar_propriedade(propriedade: schemas.PropriedadeCreate, db: Session = Depends(get_db)):
     db_propriedade = models.Propriedade(**propriedade.dict())

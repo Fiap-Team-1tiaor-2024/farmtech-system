@@ -2,7 +2,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from decouple import config
-import os
 
 db_user = config("DB_USER")
 db_password = config("DB_PASSWORD")

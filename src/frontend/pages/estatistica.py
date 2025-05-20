@@ -5,7 +5,6 @@ import pandas as pd
 st.set_page_config(layout="wide")
 st.title("📊 Análises Estatísticas com R")
 
-# Botão para executar o script R
 if st.button("Executar Análise R", type="primary"):
     with st.spinner("🔄 Executando script R via backend... Por favor, aguarde."):
         try:
@@ -36,7 +35,6 @@ if st.button("Executar Análise R", type="primary"):
                     for i, arquivo in enumerate(arquivos_csv):
                         col = cols[i % 2]
                         csv_url = f"http://backend:8080/v1/farmtech/analises/r/csv/{arquivo}"
-                        # col.caption(f"Carregando: {csv_url}") # Para depuração
                         try:
                             df = pd.read_csv(csv_url)
                             col.subheader(arquivo.replace(".csv", "").replace("_", " ").title())

@@ -1,7 +1,6 @@
 import streamlit as st
-import pandas as pd
 import requests
-import plotly.graph_objects as go # Usaremos graph_objects para mais controle
+import plotly.graph_objects as go
 
 st.set_page_config(layout="wide")
 st.title("📊 Análise Preditiva")
