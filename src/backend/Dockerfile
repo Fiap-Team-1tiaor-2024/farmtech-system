@@ -2,7 +2,7 @@ FROM python:3.13-slim
 
 # Instalar R, dependências de compilação para pacotes R e limpar o cache do apt
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+    apt-get install -y --allow-downgrades --no-install-recommends \
     r-base \
     r-base-dev \
     libcurl4-openssl-dev \

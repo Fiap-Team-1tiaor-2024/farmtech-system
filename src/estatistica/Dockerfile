@@ -1,7 +1,8 @@
 FROM r-base:latest
 
 # Instala dependências do sistema (boas práticas para gráficos e manipulação)
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --allow-downgrades \
+    libglib2.0-0t64=2.84.1-2 \
     libcurl4-openssl-dev \
     libssl-dev \
     libxml2-dev \
