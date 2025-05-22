@@ -27,6 +27,11 @@ Este projeto foi desenvolvido na última fase do ano letivo, sendo uma junção 
 *   **Gerenciamento de Pacotes:**
     * UV: Gerenciador de pacotes e ambientes virtuais Python.
 
+*   **Organização do Código e Padrão PEP 8:**
+    *   **PEP 8:** É o guia de estilo oficial para código Python, que define convenções para escrita de código Python legível e consistente. Aderir à PEP 8 melhora a colaboração e a manutenção do código.
+    *   **Blue:** Um formatador de código Python intransigente e opinativo. Ele reformata automaticamente o código Python para garantir um estilo consistente, seguindo as diretrizes da PEP 8, mas com algumas de suas próprias convenções para simplificar a formatação.
+    *   **Isort:** Uma utilidade Python para organizar as importações (imports) alfabeticamente e separá-las automaticamente em seções e por tipo. Isso ajuda a manter os imports limpos, consistentes e fáceis de ler, também em conformidade com as diretrizes da PEP 8.
+
 *   **Backend:**
     *   Python 3.13
     *   FastAPI: Para construção de APIs RESTful.
