@@ -1,5 +1,6 @@
+from typing import List, Optional
+
 from pydantic import BaseModel
-from typing import Optional, List
 
 # Arquivo de DTO para representar os dados que serão enviados e recebidos pela API
 
@@ -7,11 +8,14 @@ from typing import Optional, List
 class CulturaBase(BaseModel):
     nome: str
 
+
 class CulturaCreate(CulturaBase):
     pass
 
+
 class Cultura(CulturaBase):
     id: int
+
     class Config:
         orm_mode = True
 
@@ -21,11 +25,14 @@ class PropriedadeBase(BaseModel):
     nome: str
     localizacao: Optional[str]
 
+
 class PropriedadeCreate(PropriedadeBase):
     pass
 
+
 class Propriedade(PropriedadeBase):
     id: int
+
     class Config:
         orm_mode = True
 
@@ -37,11 +44,14 @@ class ProducaoBase(BaseModel):
     area: float
     custo_producao: float
 
+
 class ProducaoCreate(ProducaoBase):
     pass
 
+
 class Producao(ProducaoBase):
     id: int
+
     class Config:
         orm_mode = True
 
@@ -53,10 +63,13 @@ class InsumoBase(BaseModel):
     quantidade: float
     id_producao: int
 
+
 class InsumoCreate(InsumoBase):
     pass
 
+
 class Insumo(InsumoBase):
     id: int
+
     class Config:
         orm_mode = True
