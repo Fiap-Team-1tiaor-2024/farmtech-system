@@ -4,6 +4,12 @@ import streamlit as st
 
 st.set_page_config(layout='wide')
 st.title('📊 Análise Preditiva')
+st.markdown(
+    """
+    Esta página executa um script Python para gerar previsões de produção agrícola utilizando 
+    algoritmos de aprendizado de máquina como Regressão Linear, KNN e Árvore de Decisão.
+    """
+)
 
 # Função para criar o gráfico de dispersão Real vs. Previsto
 def criar_grafico_dispersao(y_true, y_pred, title):

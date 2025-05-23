@@ -2,7 +2,7 @@ import requests
 import streamlit as st
 
 st.title('🌱 Farmtech')
-st.caption(
+st.markdown(
     'Farmtech é uma plataforma de gestão agrícola que permite o gerenciamento de culturas, propriedades e produções.'
 )
 

@@ -4,6 +4,12 @@ import streamlit as st
 
 st.set_page_config(layout='wide')
 st.title('📊 Análises Estatísticas com R')
+st.markdown(
+    """
+    Esta página executa um script R para gerar análises estatísticas de dados de produção agrícola. 
+    O script calcula médias e desvios padrão de variáveis como área, produção e insumos.
+    """
+)
 
 if st.button('Executar Análise R', type='primary'):
     with st.spinner(
