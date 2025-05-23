@@ -57,10 +57,10 @@ if st.button('Executar Predição', type='primary'):
                 else:
                     st.subheader('Resultados da Análise Preditiva (MSE)')
                     st.write(
-                        f"Linear Regression: {data.get('mse_lr', 'N/A'):.4f}"
+                        f"**Linear Regression**: {data.get('mse_lr', 'N/A'):.4f}"
                     )
-                    st.write(f"KNN: {data.get('mse_knn', 'N/A'):.4f}")
-                    st.write(f"Decision Tree: {data.get('mse_dt', 'N/A'):.4f}")
+                    st.write(f"**KNN**: {data.get('mse_knn', 'N/A'):.4f}")
+                    st.write(f"**Decision Tree**: {data.get('mse_dt', 'N/A'):.4f}")
 
                     st.markdown('---')
                     st.subheader('Gráficos de Dispersão (Real vs. Previsto)')
