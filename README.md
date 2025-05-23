@@ -172,6 +172,8 @@ Acesse `http://localhost:8501`:
 *   **Página de Predição (`pages/predicao.py`):**
     *   Botão para executar os modelos de análise preditiva.
     *   Exibição dos MSEs e gráficos de dispersão (Real vs. Previsto).
+*   **Página do Simulador ESP32 (`pages/esp32.py`):**
+    *   Botão para iniciar a simulação de envio de dados de sensores (temperatura, umidade) para uma fila AWS SQS.
 
 ## 🗄️ Banco de Dados
 
@@ -190,6 +192,7 @@ docker-compose down -v
 ```
 
 ## 👨‍💻 Autores
+- Gabrielle Barao Halasc Frateschi - RM560147@fiap.com.br
 - Gabriela da Cunha Rocha - RM561041@fiap.com.br
 - Gustavo Segantini Rossignolli - RM560111@fiap.com.br
 - Vitor Lopes Romão - RM559858@fiap.com.br
