@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routers import estatistica, farmtech, predicao, simulador_esp32
+from routers import estatistica, farmtech, predicao, simulador_esp32, detector_objeto
 
 app = FastAPI()
 
@@ -8,3 +8,4 @@ app.include_router(estatistica.router, prefix='/v1/farmtech/analises/r')
 app.include_router(farmtech.router, prefix='/v1/farmtech')
 app.include_router(predicao.router, prefix='/v1/farmtech')
 app.include_router(simulador_esp32.router, prefix='/v1/farmtech')
+app.include_router(detector_objeto.router, prefix='/v1/farmtech')

@@ -2,11 +2,14 @@ services:
   backend:
     build:
       context: ./src/backend
+      dockerfile: Dockerfile
     container_name: farmtech-backend
     ports:
       - "8080:8080"
     volumes:
       - ./src:/app
+      - ./logs:/app/logs # Seu volume de logs existente
+      - ./imagens_yolo_teste:/app/imagens_para_teste # Novo volume para as imagens
     env_file:
       - ./src/infra/.env
     environment:
