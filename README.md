@@ -1,6 +1,6 @@
 # Farmtech System 🌱
 
-Farmtech é uma plataforma de gestão agrícola que permite o gerenciamento de culturas, propriedades, produções, além de fornecer análises estatísticas e preditivas sobre dados agrícolas. O sistema também inclui um simulador de dispositivo ESP32 para envio de dados de sensores para uma fila AWS SQS.
+Farmtech é uma plataforma de gestão agrícola que permite o gerenciamento de culturas, propriedades, produções, além de fornecer análises estatísticas e preditivas sobre dados agrícolas. O sistema também inclui um simulador de dispositivo ESP32 para envio de dados de sensores para uma fila AWS SQS e funcionalidades de visão computacional para detecção de objetos.
 
 Este projeto foi desenvolvido na última fase do ano letivo, sendo uma junção de tudo que foi realizado durante o primeiro ano da graduação de Inteligência Artificial na FIAP.
 
@@ -18,6 +18,9 @@ Este projeto foi desenvolvido na última fase do ano letivo, sendo uma junção 
     *   Treinamento de modelos de Regressão Linear, K-Nearest Neighbors (KNN) e Árvore de Decisão.
     *   Cálculo do Mean Squared Error (MSE) para cada modelo.
     *   Visualização de gráficos de dispersão (Valores Reais vs. Previstos) para cada modelo.
+*   **Visão Computacional com YOLOv5:**
+    *   Execução de detecção de objetos utilizando o modelo YOLOv5 pré-treinado (`yolov5s.pt`) em imagens de exemplo.
+    *   Visualização das imagens processadas com as detecções no frontend.
 *   **Simulador ESP32:**
     *   Simulação de envio de dados de sensores (temperatura, umidade) para uma fila AWS SQS.
 *   **Interface Web Interativa:**
@@ -46,6 +49,10 @@ Este projeto foi desenvolvido na última fase do ano letivo, sendo uma junção 
 *   **Análise Estatística:**
     *   R
     *   Pacotes R: `dplyr`, `tidyr`, `gridExtra`.
+*   **Visão Computacional:**
+    *   YOLOv5 (via Ultralytics)
+    *   PyTorch
+    *   OpenCV
 *   **Banco de Dados:**
     *   PostgreSQL 16
 *   **Simulador e Mensageria:**
@@ -55,6 +62,7 @@ Este projeto foi desenvolvido na última fase do ano letivo, sendo uma junção 
     *   Docker
     *   Docker Compose
     *   A conteinerização com **Docker** e **Docker Compose** foi escolhida para integrar os diversos serviços do projeto (backend, frontend, banco de dados, serviço de estatística R) em um ambiente coeso e isolado. Isso simplifica a configuração, o deploy e garante que cada componente execute de forma consistente em diferentes máquinas, facilitando a gestão do ciclo de vida da aplicação como um todo.
+    *   O repositório YOLOv5 é clonado durante o processo de build da imagem Docker do backend.
 
 
 ## 📂 Estrutura do Projeto
@@ -63,12 +71,12 @@ O projeto está organizado da seguinte forma dentro do diretório `src/`:
 
 ```
 src/
-├── backend/        # Lógica do backend (API    FastAPI, modelos, schemas, roteadores)
-│   ├── Dockerfile
+├── backend/        # Lógica do backend (API FastAPI, modelos, schemas, roteadores)
+│   ├── Dockerfile  # Clona o YOLOv5 durante o build
 │   ├── main.py
 │   ├── requirements.txt
 │   ├── models/
-│   ├── routers/
+│   ├── routers/    # Inclui o roteador para detecção de objetos
 │   └── schemas/
 ├── estatistica/    # Serviço de análise estatística com R
 │   ├── Dockerfile
@@ -79,7 +87,7 @@ src/
 │   ├── Dockerfile
 │   ├── main.py
 │   ├── requirements.txt
-│   └── pages/          # Páginas adicionais do Streamlit (estatistica, predicao)
+│   └── pages/          # Páginas adicionais do Streamlit (estatistica, predicao, visao_yolo_exemplos)
 ├── infra/          # Configurações de infraestrutura
 │   ├── .env            # Arquivo de variáveis de ambiente (deve ser criado localmente)
 │   ├── database/       # Configuração da conexão com o banco de dados
@@ -87,6 +95,7 @@ src/
 │   └── setup/          # Scripts para setup inicial (ex: criação de tabelas)
 └── ...
 ```
+O arquivo `.gitignore` na raiz do projeto está configurado para ignorar a pasta `src/backend/yolov5/`, pois ela é obtida durante o build da imagem Docker.
 
 ## ⚙️ Configuração e Instalação
 
@@ -94,6 +103,7 @@ src/
 
 *   Docker: [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
 *   Docker Compose: [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
+*   Git (para o clone do YOLOv5 durante o build do Docker, se não estiver usando uma imagem base que já o inclua)
 
 ### Variáveis de Ambiente
 
@@ -127,7 +137,7 @@ src/
     ```bash
     docker-compose up --build -d
     ```
-    O `-d` executa os containers em modo detached (background).
+    O `-d` executa os containers em modo detached (background). A primeira construção do backend pode levar mais tempo devido ao clone do YOLOv5 e download de seus modelos.
 
 3.  Após os containers estarem rodando:
     *   O **Frontend (Streamlit)** estará acessível em: `http://localhost:8501`
@@ -155,6 +165,9 @@ Localizados em `http://localhost:8080/v1/farmtech/`:
     *   `GET /analises/r/csv/{filename}`: Obtém um arquivo CSV gerado pelo script R.
 *   **Análise Preditiva:**
     *   `GET /predicao`: Executa os modelos preditivos e retorna MSEs e dados para gráficos.
+*   **Visão Computacional com YOLOv5:**
+    *   `GET /detector_objeto_exemplos_yolo`: Executa a detecção YOLOv5 em imagens de exemplo e retorna os resultados, incluindo nomes dos arquivos processados.
+    *   `GET /yolo_example_image/{image_name}`: Serve uma imagem processada específica da detecção de exemplos YOLO.
 *   **Simulador ESP32:**
     *   `POST /simulador`: Inicia o simulador para enviar dados para a fila SQS.
 
