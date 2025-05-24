@@ -4,6 +4,10 @@ Farmtech é uma plataforma de gestão agrícola que permite o gerenciamento de c
 
 Este projeto foi desenvolvido na última fase do ano letivo, sendo uma junção de tudo que foi realizado durante o primeiro ano da graduação de Inteligência Artificial na FIAP.
 
+## 🎬 Vídeo Demonstrativo
+
+[Farmtech System - Demonstração](https://youtu.be/_bl4JSVoH3Q)
+
 ## 🛠️ Funcionalidades Principais
 
 *   **Gestão de Entidades Agrícolas:**
